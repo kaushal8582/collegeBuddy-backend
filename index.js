@@ -12,7 +12,7 @@ dotenv.config({
 
 mongoConnect()
 .then(() => {
-  app.listen(process.env.PORT, () => {
+  app.listen(process.env.PORT || 3000, () => {
     console.log("App is started on server : ", process.env.PORT);
 
   })
