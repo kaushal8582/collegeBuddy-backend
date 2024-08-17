@@ -54,16 +54,12 @@ const deleteTeamMember = asyncHandler(async(req,res)=>{
 
 
 const getAllTeamMeber = asyncHandler(async(req,res)=>{
-  console.log("call");
   
   const allTeamMember = await Team.find({});
 
   if(!allTeamMember || allTeamMember.length<=0 ){
     throw new ApiError(200,"Not have any team member ");
   }
-  console.log(allTeamMember);
-  
-
   return res.status(200).json(new ApiResponse(200,"All team member fetch successfully ",allTeamMember));
 })
 
