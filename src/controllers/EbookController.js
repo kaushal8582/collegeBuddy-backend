@@ -69,11 +69,7 @@ const getAllEbook = asyncHandler(async (req, res) => {
     throw new ApiError(400, "Not have any ebooks");
   }
 
-  return res
-    .status(200)
-    .json(
-      new ApiResponse(200, "Fetched all Ebooks Successfully ", allEbooks)
-    )
+  return res.status(200).json(new ApiResponse(200, "Fetched all Ebooks Successfully ", allEbooks))
 })
 
 const downloadEbook = asyncHandler(async(req,res)=>{
