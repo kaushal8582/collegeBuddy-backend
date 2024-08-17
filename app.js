@@ -31,6 +31,7 @@ import studyMaterialRoute from "./src/routes/StudyMaterial.routes.js"
 import UniversityRoute from "./src/routes/College.routes.js"
 import CourseRoute from "./src/routes/Course.routes.js"
 import VideoRoute from "./src/routes/Video.routes.js"
+import TeamRoute from "./src/routes/Team.routes.js"
 
 app.use("/collegebuddy/api/v1/users",userRoute)
 app.use("/collegebuddy/api/v1/pyq",pyqRoutes)
@@ -39,5 +40,6 @@ app.use("/collegebuddy/api/v1/studymaterial",studyMaterialRoute)
 app.use("/collegebuddy/api/v1/college",UniversityRoute)
 app.use("/collegebuddy/api/v1/course",CourseRoute)
 app.use("/collegebuddy/api/v1/video",VideoRoute)
+app.use("/collegebuddy/api/v1/team",TeamRoute)
 
 export {app}

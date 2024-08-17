@@ -12,7 +12,7 @@ router.route("/uploadebook").post( verifyJWT,verifyAdmin, upload.fields([
   }
 ]),uploadEbook)
 
-router.route("/getallebooks").get(getAllEbook);
+router.route("/ ").get(getAllEbook);
 
 router.route("/ebookdownload/:id").get(verifyJWT,downloadEbook);
 router.route("/ebookdelete/:id").get(verifyJWT,deleteEbook);
