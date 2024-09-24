@@ -49,9 +49,6 @@ const rejisterUser = asyncHandler(async (req, res) => {
     throw new ApiError(400, "Required all fields");
   }
 
-  console.log(name, email, password, phoneNo, college, course, semester);
-
-
   const alreadyExists = await User.findOne({ email })
   if (alreadyExists) {
     throw new ApiError(401, "User already exists");
@@ -124,8 +121,6 @@ const loginUser = asyncHandler(async (req, res) => {
 })
 
 const logOutUser = asyncHandler(async (req, res) => {
-  console.log("logout", req.user._id);
-
   await User.findByIdAndUpdate(
     req.user._id,
     {
