@@ -13,14 +13,11 @@ const uploadEbook = asyncHandler(async (req, res) => {
     throw new ApiError(400, "All fields are required")
   }
 
-  console.log(title,description,ebookLink);
   
-
-  console.log(req.files?.thumbnail[0]);
   
 
   const thumbnail = req.files?.thumbnail[0]?.path
-  console.log(thumbnail);
+ 
   
   if (!thumbnail) {
     throw new ApiError(400, "Ebooks thumbnail are required ");
@@ -78,7 +75,6 @@ const downloadEbook = asyncHandler(async(req,res)=>{
   if(!eBook){
     throw new ApiError(400,"Not Found");
   }
-  console.log(eBook);
   
   return res.status(200).json(new ApiResponse(200,"Find Ebook successfully ", eBook.ebookLink));
 })
