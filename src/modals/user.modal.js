@@ -36,6 +36,10 @@ const userSchema = new mongoose.Schema({
     type:String,
     required:false
   },
+  createdProfile:{
+    type:Boolean,
+    default:false,
+  },
   refreshToken:{
     type:String,
   }

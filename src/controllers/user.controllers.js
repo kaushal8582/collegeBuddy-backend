@@ -288,6 +288,13 @@ const exportUserData = asyncHandler(async (req, res) => {
   res.end()
 })
 
+
+const verifyLogin = asyncHandler(async(req,res)=>{
+  return res.status(200).json(new ApiResponse(200,"LoggedInUser"))
+})
+
+
+
 export {
   rejisterUser,
   loginUser,
@@ -296,5 +303,6 @@ export {
   sendOtp,
   verifyOtp,
   updatePassword,
-  exportUserData
+  exportUserData,
+  verifyLogin,
 }
