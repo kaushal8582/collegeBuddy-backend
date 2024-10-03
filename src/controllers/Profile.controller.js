@@ -8,7 +8,7 @@ import { User } from "../modals/user.modal.js";
 
 const uploadImage = asyncHandler(async (req, res) => {
   // Check if req.files or req.files.profileImg exists
-  console.log(req.files);
+  
 
   if (
     !req.files ||
@@ -20,7 +20,7 @@ const uploadImage = asyncHandler(async (req, res) => {
 
   // Fetch the image path safely
   const imgPath = req.files.profileImg[0].path;
-  console.log(imgPath);
+
 
   const uploadedImg = await uploadOnCloudinary(imgPath);
 
@@ -31,7 +31,7 @@ const uploadImage = asyncHandler(async (req, res) => {
   const imageUrl = uploadedImg.url;
 
   const { userId } = req.body;
-  console.log(userId, imgPath);
+ 
 
   if (!userId) {
     throw new ApiError(400, "User ID is required");
@@ -60,7 +60,7 @@ const uploadImage = asyncHandler(async (req, res) => {
 
 const uploadProject = asyncHandler(async (req, res) => {
   const { title, desc, livelink, githublink, profileId } = req.body;
-  console.log(req.body.profileId);
+  
 
   if (!mongoose.Types.ObjectId.isValid(profileId)) {
     throw new ApiError(400, "Invalid profileId");
