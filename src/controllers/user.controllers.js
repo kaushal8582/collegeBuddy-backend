@@ -78,13 +78,7 @@ const rejisterUser = asyncHandler(async (req, res) => {
 
 
 const loginUser = asyncHandler(async (req, res) => {
-  // get data from fronted
-  // validate data !null
-  // find the user
-  // password validate
-  // access and refresh token generate
-  //send cookies
-
+  
   const { email, password } = req.body
   if (!email) {
     throw new ApiError(400, "Email is required ");
@@ -104,6 +98,21 @@ const loginUser = asyncHandler(async (req, res) => {
   const { accessToken, refreshToken } = await generateAccessAndRefreshToken(user._id);
 
   const loggedInUser = await User.findById(user._id).select("-password -refreshToken")
+
+  const currentDate = new Date();
+  const lastActivity = loggedInUser.lastActivityDate || new Date("1970-01-01");
+
+  const oneDay = 24*60*60*1000;
+  const diffDay = Math.floor((currentDate-lastActivity)/oneDay)
+  if(diffDay==1){
+    loggedInUser.dailyStrike+=1;
+  }else if(diffDay>1){
+    loggedInUser.dailyStrike=1;
+  }
+
+  loggedInUser.lastActivityDate = currentDate;
+  await loggedInUser.save();
+
 
   const options = {
     httpOnly: true,

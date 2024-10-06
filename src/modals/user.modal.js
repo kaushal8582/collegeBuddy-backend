@@ -40,6 +40,13 @@ const userSchema = new mongoose.Schema({
     type:Boolean,
     default:false,
   },
+  dailyStrike:{
+    type:Number,
+    default:0
+  }, 
+  lastActivityDate: {
+    type: Date
+  },
   refreshToken:{
     type:String,
   }
