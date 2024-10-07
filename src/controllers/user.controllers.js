@@ -173,8 +173,8 @@ const admin = asyncHandler(async (req, res) => {
 const transpoter = noemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'kaushalkumar02918@gmail.com',
-    pass: "ssox ujuf uygu cqis"
+    user: 'alert.collegebuddy@gmail.com',
+    pass: "npkv fvhf jqoy tqyz"
   }
 })
 
