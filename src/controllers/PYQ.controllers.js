@@ -94,11 +94,7 @@ const findPYQ = asyncHandler(async (req, res) => {
 
 const downloadPYQ = asyncHandler(async (req, res) => {
   const id = req.params.id;
-
-
   const preiousQuestion = await Pyq.findById(id);
-
-
   if (!preiousQuestion) {
     throw new ApiError(400, "Previous year question not found ");
   }

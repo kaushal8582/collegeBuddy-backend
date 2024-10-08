@@ -104,13 +104,17 @@ const loginUser = asyncHandler(async (req, res) => {
 
   const oneDay = 24*60*60*1000;
   const diffDay = Math.floor((currentDate-lastActivity)/oneDay)
+  
+  
   if(diffDay==1){
     loggedInUser.dailyStrike+=1;
+    loggedInUser.lastActivityDate = currentDate;
   }else if(diffDay>1){
     loggedInUser.dailyStrike=1;
+    loggedInUser.lastActivityDate = currentDate;
   }
 
-  loggedInUser.lastActivityDate = currentDate;
+  
   await loggedInUser.save();
 
 
