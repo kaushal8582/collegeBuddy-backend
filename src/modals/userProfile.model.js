@@ -59,7 +59,11 @@ const ProfileSchema = new mongoose.Schema({
   links: [LinkSchema], 
   education: [EducationSchema], 
   experiences: [ExperienceSchema] ,
-  projects:[ProjectSchema]
+  projects:[ProjectSchema],
+  password:{
+    type:String,
+    required:true
+  }
 },{timestamps:true});
 
 // Create Profile model

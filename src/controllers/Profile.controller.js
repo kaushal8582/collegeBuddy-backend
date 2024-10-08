@@ -5,6 +5,8 @@ import uploadOnCloudinary from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/apiResponse.js";
 import mongoose from "mongoose";
 import { User } from "../modals/user.modal.js";
+import CryptoJS  from "crypto-js"
+
 
 const uploadImage = asyncHandler(async (req, res) => {
   // Check if req.files or req.files.profileImg exists
@@ -163,6 +165,9 @@ const addProfile = asyncHandler(async (req, res) => {
     throw new ApiError(404, "User not found");
   }
 
+ const randomBytes = CryptoJS.lib.WordArray.random(2); // 2 bytes = 4 hex characters
+  let  passw = randomBytes.toString(CryptoJS.enc.Hex);
+
   const updatedUser = await User.findByIdAndUpdate(
     userId,
     {
@@ -183,6 +188,7 @@ const addProfile = asyncHandler(async (req, res) => {
     links,
     experiences,
     education,
+    password:passw
   });
 
   const ProfileData = await Profile.findById(newProfile._id);
@@ -217,13 +223,20 @@ const getProfileData = asyncHandler(async (req, res) => {
 
 const getProfileDataForEveryone = asyncHandler(async(req,res)=>{
   const {username} = req.params;
-
+  const {password} = req.body;
   if(!username){
     throw new ApiError(400,"Username is required");
+  }
+  if(!password){
+    throw new ApiError(400,"Password is required");
   }
 
   const userProfileData = await Profile.findOne({username});
   if(!userProfileData){
+    throw new ApiError(400,"User not foud");
+  }
+
+  if(password!=userProfileData.password){
     throw new ApiError(400,"User not foud");
   }
 

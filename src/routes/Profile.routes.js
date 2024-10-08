@@ -8,7 +8,7 @@ const router = Router();
 
 router.route("/toggleprofilelike/:profileId").post(verifyJWT,toggleProfileLike);
 router.route("/incprofileviews/:profileId").get(incrementProfileViews);
-router.route("/getprofiledataforeveryone/:username").get(getProfileDataForEveryone);
+router.route("/getprofiledataforeveryone/:username").post(getProfileDataForEveryone);
 router.route("/addprofile").post(verifyJWT,addProfile);
 router.route("/updateprofile").post(verifyJWT,updateProfile);
 router.route("/uploadproject").post(verifyJWT,upload.fields([
