@@ -36,7 +36,7 @@ const generateAccessAndRefreshToken = async (userId) => {
 
 const rejisterUser = asyncHandler(async (req, res) => {
 
-  const { name, email, password, phoneNo, college, course, semester } = req.body
+  let { name, email, password, phoneNo, college, course, semester } = req.body
 
   if (
     [name, email, password, phoneNo, college, course, semester].some((item) => (item?.trim() === ""))
@@ -76,7 +76,7 @@ const rejisterUser = asyncHandler(async (req, res) => {
 
 const loginUser = asyncHandler(async (req, res) => {
   
-  const { email, password } = req.body
+  let { email, password } = req.body
   if (!email) {
     throw new ApiError(400, "Email is required ");
   }

@@ -119,7 +119,7 @@ const uploadProject = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, "UploadProject successfully"));
 });
 
-const addProfile = asyncHandler(async (req, res) => {
+let addProfile = asyncHandler(async (req, res) => {
   const {
     userId,
     about,
