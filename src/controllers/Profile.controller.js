@@ -142,6 +142,8 @@ const addProfile = asyncHandler(async (req, res) => {
     throw new ApiError(400, "username is required");
   }
 
+  username = username.toLowerCase().trim();
+
   const existingUser = await Profile.findOne({ username });
   if (existingUser) {
     throw new ApiError(409, "User name is already existing");
@@ -288,8 +290,9 @@ const updateProfile = asyncHandler(async (req, res) => {
     throw new ApiError(404, "Profile not found");
   }
 
+
   // Check if the username already exists and is not the current profile's username
-  if (username && username !== profile.username) {
+  if (username && username.toLowerCase().trim() !== profile.username) {
     const existingUser = await Profile.findOne({ username });
     if (existingUser) {
       throw new ApiError(409, "Username already exists");
@@ -299,7 +302,7 @@ const updateProfile = asyncHandler(async (req, res) => {
   const updatedProfile = await Profile.findByIdAndUpdate(
     profile._id,
     {
-      username: username || profile.username,
+      username: username.toLowerCase().trim() || profile.username,
       about: about || profile.about,
       gender: gender || profile.gender,
       city: city || profile.city,

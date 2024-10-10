@@ -36,11 +36,6 @@ const generateAccessAndRefreshToken = async (userId) => {
 
 const rejisterUser = asyncHandler(async (req, res) => {
 
-  // data from fronted
-  // validate data !empty or other
-  // check user already not exists
-  // create a object and upload on database
-
   const { name, email, password, phoneNo, college, course, semester } = req.body
 
   if (
@@ -48,6 +43,8 @@ const rejisterUser = asyncHandler(async (req, res) => {
   ) {
     throw new ApiError(400, "Required all fields");
   }
+
+  email=email.toLowerCase().trim();
 
   const alreadyExists = await User.findOne({ email })
   if (alreadyExists) {
@@ -83,6 +80,7 @@ const loginUser = asyncHandler(async (req, res) => {
   if (!email) {
     throw new ApiError(400, "Email is required ");
   }
+  email = email.toLowerCase().trim();
 
   const user = await User.findOne({ email });
   if (!user) {
