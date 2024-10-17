@@ -31,7 +31,20 @@ const addCollegeName = asyncHandler(async(req,res)=>{
 
 })
 
+const deleteCollegeName = asyncHandler(async(req,res)=>{
+  const {id} = req.params;
+
+  const cName =  await College.findByIdAndDelete(id);
+  if(!cName){
+    throw new ApiError(400,"Invalid Request")
+  }
+
+  return res.status(200).json(new ApiResponse(200,"Delete successfully ",{}));
+
+})
+
 export {
   getAllCollegeName,
   addCollegeName,
+  deleteCollegeName,
 }

@@ -33,7 +33,21 @@ const addCourseName = asyncHandler(async (req, res) => {
 
 })
 
+
+const deleteCourseName = asyncHandler(async(req,res)=>{
+  const {id} = req.params;
+
+  const cName =  await Course.findByIdAndDelete(id);
+  if(!cName){
+    throw new ApiError(400,"Invalid Request")
+  }
+
+  return res.status(200).json(new ApiResponse(200,"Delete successfully ",{}));
+
+})
+
 export {
   addCourseName,
   getAllCourseName,
+  deleteCourseName,
 }
