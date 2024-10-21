@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { verifyJWT } from "../middleware/authMiddleware.js";
 import { upload } from "../middleware/multer.middleware.js";
-import { addProfile, getProfileData, getProfileDataForEveryone, incrementProfileViews, toggleProfileLike, updateProfile,uploadImage, uploadProject } from "../controllers/Profile.controller.js";
+import { addProfile, getProfileData, getProfileDataForEveryone, incrementProfileViews, toggleProfileLike, updateProfile,uploadImage, uploadProject, userNameAvilableOrNot } from "../controllers/Profile.controller.js";
 
 
 const router = Router();
@@ -10,6 +10,7 @@ router.route("/toggleprofilelike/:profileId").post(verifyJWT,toggleProfileLike);
 router.route("/incprofileviews/:profileId").get(incrementProfileViews);
 router.route("/getprofiledataforeveryone/:username").post(getProfileDataForEveryone);
 router.route("/addprofile").post(verifyJWT,addProfile);
+router.route("/checkusername").post(verifyJWT,userNameAvilableOrNot);
 router.route("/updateprofile").post(verifyJWT,updateProfile);
 router.route("/uploadproject").post(verifyJWT,upload.fields([
   {

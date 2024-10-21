@@ -222,6 +222,22 @@ const getProfileData = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, "Get student data successfully", profile));
 });
 
+const userNameAvilableOrNot = asyncHandler(async(req,res)=>{
+  const {userName} = req.body;
+
+  if(!userName){
+    throw new ApiError(400,"Username is required");
+  }
+
+  const findedData = await Profile.findOne({username :userName})
+
+  if(findedData){
+    throw new ApiError(409,"Username is required");
+  }
+
+  return res.status(200).json(new ApiResponse(200,"UserName Not Found"));
+
+})
 
 const getProfileDataForEveryone = asyncHandler(async(req,res)=>{
   const {username} = req.params;
@@ -384,4 +400,5 @@ export {
   toggleProfileLike,
   uploadProject,
   getProfileDataForEveryone,
+  userNameAvilableOrNot,
 };

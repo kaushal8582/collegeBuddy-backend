@@ -2,6 +2,7 @@ import express from "express"
 import cookieParser from "cookie-parser";
 import cors from "cors"
 import dotenv from "dotenv"
+import cron from "node-cron"
 
 
 dotenv.config({
@@ -33,6 +34,7 @@ import CourseRoute from "./src/routes/Course.routes.js"
 import VideoRoute from "./src/routes/Video.routes.js"
 import TeamRoute from "./src/routes/Team.routes.js"
 import ProfileRoute from "./src/routes/Profile.routes.js"
+import { ApiResponse } from "./src/utils/apiResponse.js";
 
 app.use("/collegebuddy/api/v1/users",userRoute)
 app.use("/collegebuddy/api/v1/pyq",pyqRoutes)
@@ -43,5 +45,36 @@ app.use("/collegebuddy/api/v1/course",CourseRoute)
 app.use("/collegebuddy/api/v1/video",VideoRoute)
 app.use("/collegebuddy/api/v1/team",TeamRoute)
 app.use("/collegebuddy/api/v1/profile",ProfileRoute)
+
+app.get("/",(req,res)=>{
+  return res.status(200).json(new ApiResponse(200,"System call successfully"))
+})
+
+
+cron.schedule( '*/2 * * * *' ,async function(){
+ 
+  try {
+    const res = await fetch('http://localhost:3000/',{
+      method:"GET",
+      headers:{
+        "Content-Type": "application/json",
+      }
+    })
+
+    let value = await res.json();
+
+    if(res.ok){
+      console.log("ok",value);
+      
+    }
+
+  } catch (error) {
+    console.log(error);
+    
+  }
+  
+})
+
+
 
 export {app}
