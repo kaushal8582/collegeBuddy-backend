@@ -15,7 +15,8 @@ const eBooksSchema  = new mongoose.Schema({
   ebookLink:{
     type:String,
     required:true,
-  }
+  },
+  
 },{timestamps:true})
 
 

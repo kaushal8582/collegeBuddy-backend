@@ -12,13 +12,8 @@ const uploadEbook = asyncHandler(async (req, res) => {
   ) {
     throw new ApiError(400, "All fields are required")
   }
-
-  
-  
-
   const thumbnail = req.files?.thumbnail[0]?.path
  
-  
   if (!thumbnail) {
     throw new ApiError(400, "Ebooks thumbnail are required ");
   }
@@ -94,9 +89,12 @@ const deleteEbook = asyncHandler(async(req,res)=>{
 
 })
 
+
+
 export {
   uploadEbook,
   getAllEbook,
   downloadEbook,
-  deleteEbook
+  deleteEbook,
+  
 }

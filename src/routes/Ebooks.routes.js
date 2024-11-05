@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { upload } from "../middleware/multer.middleware.js";
-import { deleteEbook, downloadEbook, getAllEbook, uploadEbook } from "../controllers/EbookController.js";
+import { deleteEbook, downloadEbook, getAllEbook,   uploadEbook } from "../controllers/EbookController.js";
 import { verifyAdmin, verifyJWT } from "../middleware/authMiddleware.js";
 
 const router = Router();
@@ -16,6 +16,7 @@ router.route("/getallebooks").get(getAllEbook);
 
 router.route("/ebookdownload/:id").get(verifyJWT,downloadEbook);
 router.route("/ebookdelete/:id").get(verifyJWT,deleteEbook);
+
 
 export default router
 

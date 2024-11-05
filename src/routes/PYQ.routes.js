@@ -15,6 +15,7 @@ router.route("/uploadpyq").post(verifyJWT, verifyAdmin, upload.fields([
 router.route("/findpyq").post(findPYQ)
 router.route("/getallpyq").get(getAllPyq)
 router.route("/downloadpyq/:id").post(verifyJWT, downloadPYQ)
+router.route("/downloadpyq/:id").post(verifyJWT, downloadPYQ)
 router.route("/deletepyq/:id").post(verifyJWT, deletePyq)
 
 export default router

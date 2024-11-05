@@ -34,6 +34,7 @@ import CourseRoute from "./src/routes/Course.routes.js"
 import VideoRoute from "./src/routes/Video.routes.js"
 import TeamRoute from "./src/routes/Team.routes.js"
 import ProfileRoute from "./src/routes/Profile.routes.js"
+import SavedData from "./src/routes/Saved.routes.js"
 import { ApiResponse } from "./src/utils/apiResponse.js";
 
 app.use("/collegebuddy/api/v1/users",userRoute)
@@ -45,6 +46,7 @@ app.use("/collegebuddy/api/v1/course",CourseRoute)
 app.use("/collegebuddy/api/v1/video",VideoRoute)
 app.use("/collegebuddy/api/v1/team",TeamRoute)
 app.use("/collegebuddy/api/v1/profile",ProfileRoute)
+app.use("/collegebuddy/api/v1/saved",SavedData)
 
 app.get("/",(req,res)=>{
   return res.status(200).json(new ApiResponse(200,"System call successfully"))

@@ -24,7 +24,8 @@ const previousYearQuestionSchema = new mongoose.Schema({
   img:{
     type:String,
     required:true,
-  }
+  },
+ 
 },{timestamps:true})
 
 
